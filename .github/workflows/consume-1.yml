@@ -1,0 +1,16 @@
+name: consumer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job_1:
+    name: job 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-out
+        uses: actions/check-out@v4
+      - name: consume
+        uses: .github/workflows/comp-1.yml
