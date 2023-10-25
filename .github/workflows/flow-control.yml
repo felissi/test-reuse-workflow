@@ -1,0 +1,38 @@
+name: example on flow control
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Build:
+    name: Build 😀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Ubuntu
+        run: echo "Build Ubuntu"
+      - name: Build Window
+        run: echo "Build Window"
+      - name: Build macOS
+        run: echo "Build macOS"
+  Deploy-staging:
+    name: Deploy/Staging ✍️
+    needs:
+      - Build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy/Staging"
+  Deploy-review:
+    name: Deploy/Review 🤔
+    needs:
+      - Build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy/Review"
+  Deploy-production:
+    name: Deploy/Production 😇
+    needs:
+      - Deploy-staging
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy/Production"
